@@ -1,0 +1,37 @@
+.score-card {
+    border-radius: 20px !important;
+    border: 1px solid #e5e7eb;
+
+    &__title {
+        text-align: center;
+        font-weight: 700 !important;
+        letter-spacing: 2px;
+        margin-bottom: 2rem !important;
+    }
+
+    &__progress {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    &__value {
+        position: absolute;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+    }
+
+    &__status {
+        text-align: center;
+        font-size: 1.5rem !important;
+        font-weight: 700 !important;
+        margin-bottom: 1rem !important;
+    }
+
+    &__description {
+        text-align: center;
+        color: #6b7280;
+    }
+}

@@ -1,0 +1,112 @@
+.features {
+    padding: 6rem 8%;
+    background: #f8fafc;
+
+    &__header {
+        max-width: 700px;
+        margin: 0 auto 4rem;
+        text-align: center;
+
+        span {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.7rem;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #6b7280;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+    }
+
+    &__grid {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+        gap: 2rem;
+    }
+
+    &__card {
+        padding: 2rem;
+
+        border-radius: 20px !important;
+
+        transition: all .35s ease !important;
+
+        cursor: pointer;
+
+        border: 1px solid #e5e7eb;
+
+        background: white !important;
+
+        &:hover {
+            transform: translateY(-10px);
+
+            box-shadow: 0 20px 40px rgba(79, 70, 229, .12) !important;
+
+            border-color: #4f46e5;
+        }
+    }
+
+    &__icon {
+        width: 70px;
+
+        height: 70px;
+
+        border-radius: 18px;
+
+        background: #eef2ff;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        margin-bottom: 1.5rem;
+
+        color: #4f46e5;
+
+        transition: all .3s ease;
+
+        svg {
+            font-size: 2rem;
+        }
+    }
+
+    &__card:hover &__icon {
+        background: #4f46e5;
+
+        color: white;
+
+        transform: rotate(-8deg) scale(1.1);
+    }
+
+    &__title {
+        font-size: 1.4rem;
+
+        font-weight: 700;
+
+        margin-bottom: 1rem;
+
+        color: #111827;
+    }
+
+    &__description {
+        color: #6b7280;
+
+        line-height: 1.7;
+    }
+}

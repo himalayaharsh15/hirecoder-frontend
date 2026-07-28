@@ -1,0 +1,26 @@
+.resume-review-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__score,
+    .MuiCard-root {
+        padding: 2rem;
+        border-radius: 20px;
+        border: 1px solid #e5e7eb;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .resume-review-skeleton {
+        &__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+}
