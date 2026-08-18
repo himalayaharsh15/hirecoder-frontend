@@ -1,0 +1,243 @@
+.application-card {
+    width: 100%;
+    padding: 1.5rem;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+
+    background: #ffffff;
+
+    box-shadow: 0 0.25rem 1rem rgba(15, 23, 42, 0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    box-sizing: border-box;
+
+    &:hover {
+        transform: translateY(-0.1rem);
+        box-shadow: 0 0.5rem 1.5rem rgba(15, 23, 42, 0.08);
+    }
+
+    // ============================================================
+    // Header
+    // ============================================================
+
+    &__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    &__candidate {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        min-width: 0;
+    }
+
+    &__avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        width: 3.5rem;
+        height: 3.5rem;
+
+        border-radius: 50%;
+
+        background: #eff6ff;
+        color: #1976d2;
+
+        svg {
+            font-size: 1.8rem;
+        }
+    }
+
+    &__identity {
+        min-width: 0;
+
+        h2 {
+            margin: 0 0 0.35rem;
+
+            overflow: hidden;
+
+            color: #172033;
+
+            font-size: 1.1rem;
+            font-weight: 700;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+
+            gap: 0.35rem;
+
+            max-width: 100%;
+
+            overflow: hidden;
+
+            color: #64748b;
+
+            font-size: 0.85rem;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            svg {
+                flex-shrink: 0;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    // ============================================================
+    // Details
+    // ============================================================
+
+    &__details {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 1rem 1.5rem;
+
+        margin-top: 1.25rem;
+        padding-top: 1rem;
+
+        border-top: 1px solid #edf2f7;
+    }
+
+    &__detail {
+        display: flex;
+        align-items: center;
+
+        gap: 0.4rem;
+
+        color: #486581;
+
+        font-size: 0.85rem;
+
+        svg {
+            flex-shrink: 0;
+
+            color: #1976d2;
+
+            font-size: 1rem;
+        }
+    }
+
+    // ============================================================
+    // Skills
+    // ============================================================
+
+    &__skills {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 0.5rem;
+
+        margin-top: 1rem;
+
+        span {
+            padding: 0.35rem 0.65rem;
+
+            border-radius: 0.4rem;
+
+            background: #eff6ff;
+            color: #2563eb;
+
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+    }
+
+    // ============================================================
+    // Cover Letter
+    // ============================================================
+
+    &__cover-letter {
+        margin-top: 1rem;
+        padding: 0.9rem 1rem;
+
+        border-radius: 0.7rem;
+
+        background: #f8fafc;
+
+        span {
+            display: block;
+
+            margin-bottom: 0.35rem;
+
+            color: #475569;
+
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        p {
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+    }
+
+    // ============================================================
+    // Footer
+    // ============================================================
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+
+        gap: 0.75rem;
+
+        margin-top: 1.25rem;
+        padding-top: 1rem;
+
+        border-top: 1px solid #edf2f7;
+    }
+}
+
+// ================================================================
+// Responsive
+// ================================================================
+
+@media (max-width: 40rem) {
+    .application-card {
+        padding: 1rem;
+
+        &__header {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        &__candidate {
+            width: 100%;
+        }
+
+        &__details {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        &__footer {
+            flex-direction: column;
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+}

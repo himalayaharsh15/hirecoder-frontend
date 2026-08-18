@@ -5,13 +5,37 @@ import "./ResumeReviewSkeleton.scss";
 const ResumeReviewSkeleton = () => {
   return (
     <section className="resume-review-skeleton">
-      <Card className="resume-review-skeleton__score">
-        <Skeleton variant="text" width={120} height={35} />
+      {/* ======================================================
+          Score + Interview Chance
+      ====================================================== */}
 
-        <Skeleton variant="circular" width={150} height={150} />
+      <div className="resume-review-skeleton__overview">
+        <Card className="resume-review-skeleton__score">
+          <Skeleton variant="text" width={120} height={35} />
 
-        <Skeleton variant="text" width={180} height={30} />
-      </Card>
+          <Skeleton variant="circular" width={150} height={150} />
+
+          <Skeleton variant="text" width={180} height={30} />
+        </Card>
+
+        <Card className="resume-review-skeleton__chance">
+          <div className="resume-review-skeleton__chance-content">
+            <Skeleton variant="circular" width={52} height={52} />
+
+            <div>
+              <Skeleton variant="text" width={140} height={25} />
+
+              <Skeleton variant="text" width={100} height={35} />
+
+              <Skeleton variant="text" width={220} height={25} />
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      {/* ======================================================
+          Strengths + Weaknesses
+      ====================================================== */}
 
       <div className="resume-review-skeleton__grid">
         {[1, 2].map((item) => (
@@ -19,23 +43,27 @@ const ResumeReviewSkeleton = () => {
             <Skeleton variant="text" width={180} height={30} />
 
             <Skeleton height={30} />
-
             <Skeleton height={30} />
-
             <Skeleton height={30} />
           </Card>
         ))}
       </div>
 
+      {/* ======================================================
+          Missing Skills
+      ====================================================== */}
+
       <Card>
         <Skeleton variant="text" width={220} height={30} />
 
         <Skeleton height={30} />
-
         <Skeleton height={30} />
-
         <Skeleton height={30} />
       </Card>
+
+      {/* ======================================================
+          Summary
+      ====================================================== */}
 
       <Card>
         <Skeleton variant="text" width={180} height={30} />

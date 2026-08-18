@@ -2,16 +2,20 @@ import "./ResumeReview.scss";
 
 import type { ResumeReview as ResumeReviewType } from "../../../features/ai/types";
 
+import { motion } from "framer-motion";
+
 import ScoreCard from "../ScoreCard/ScoreCard";
 import InsightSection from "../InsightSection/InsightSection";
-import { motion } from "framer-motion";
+import InterviewChance from "../InterviewChance/InterviewChance";
+import SummaryCard from "../Summary/Summary";
+
 import { fadeUp, staggerContainer } from "../../../animation/fade";
+
 import {
   strengthConfig,
   weaknessConfig,
   missingSkillsConfig,
 } from "../../../constants/resume/insightSection";
-import SummaryCard from "../Summary/Summary";
 
 interface ResumeReviewProps {
   review: ResumeReviewType;
@@ -34,10 +38,15 @@ const ResumeReview = ({ review }: ResumeReviewProps) => {
   ];
 
   const topSections = insightSections.slice(0, 2);
+
   const bottomSection = insightSections[2];
 
   return (
     <section className="resume-review">
+      {/* ======================================================
+          Header
+      ====================================================== */}
+
       <div className="resume-review__header">
         <h2>AI Resume Analysis</h2>
 
@@ -52,33 +61,48 @@ const ResumeReview = ({ review }: ResumeReviewProps) => {
         animate="visible"
         className="resume-review__dashboard"
       >
-        <motion.div variants={fadeUp}>
-          {" "}
-          <ScoreCard score={review.atsScore} />
-        </motion.div>
+        {/* ====================================================
+            ATS Score + Interview Chance
+        ==================================================== */}
+
+        <div className="resume-review__overview">
+          <motion.div variants={fadeUp}>
+            <ScoreCard score={review.atsScore} />
+          </motion.div>
+
+          <motion.div variants={fadeUp}>
+            <InterviewChance chance={review.interviewChance} />
+          </motion.div>
+        </div>
+
+        {/* ====================================================
+            Strengths + Weaknesses
+        ==================================================== */}
 
         <div className="resume-review__grid">
           {topSections.map((section) => (
             <motion.div variants={fadeUp} key={section.config.title}>
-              {" "}
-              <InsightSection
-                key={section.config.title}
-                config={section.config}
-                items={section.items}
-              />
+              <InsightSection config={section.config} items={section.items} />
             </motion.div>
           ))}
         </div>
 
+        {/* ====================================================
+            Missing Skills
+        ==================================================== */}
+
         <motion.div variants={fadeUp}>
-          {" "}
           <InsightSection
             config={bottomSection.config}
             items={bottomSection.items}
           />
         </motion.div>
+
+        {/* ====================================================
+            Summary
+        ==================================================== */}
+
         <motion.div variants={fadeUp}>
-          {" "}
           <SummaryCard summary={review.summary} />
         </motion.div>
       </motion.div>

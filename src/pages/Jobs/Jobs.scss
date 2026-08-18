@@ -1,0 +1,504 @@
+.jobs-page {
+    min-height: 100vh;
+    background: #f7f9fc;
+    color: #172033;
+
+    &__hero {
+        background:
+            radial-gradient(circle at 85% 20%,
+                rgba(80, 110, 255, 0.22),
+                transparent 32%),
+            linear-gradient(135deg, #111827 0%, #1e293b 100%);
+        padding: 4.5rem 2rem 5.5rem;
+        color: #fff;
+    }
+
+    &__hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    &__eyebrow {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        margin-bottom: 1rem;
+        opacity: 0.75;
+    }
+
+    &__hero h1 {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(2.4rem, 5vw, 4.5rem);
+        line-height: 1.05;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+
+        span {
+            display: block;
+            opacity: 0.65;
+        }
+    }
+
+    &__hero p {
+        max-width: 680px;
+        margin: 1.5rem 0 2.5rem;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.72);
+    }
+
+    &__search {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.8fr) auto;
+        gap: 0.75rem;
+        max-width: 1050px;
+        padding: 0.75rem;
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(14px);
+    }
+
+    &__search-field {
+        background: #fff;
+        border-radius: 0.65rem;
+
+        .MuiOutlinedInput-root {
+            border-radius: 0.65rem;
+        }
+    }
+
+    &__search-button {
+        min-width: 145px;
+        border-radius: 0.65rem;
+        text-transform: none;
+        font-weight: 700;
+        box-shadow: none;
+    }
+
+    &__container {
+        max-width: 1200px;
+        margin: -2.5rem auto 0;
+        padding: 0 2rem 4rem;
+        position: relative;
+        display: grid;
+        grid-template-columns: 260px minmax(0, 1fr);
+        gap: 2rem;
+    }
+
+    &__filters {
+        height: fit-content;
+        padding: 1.4rem;
+        background: #fff;
+        border: 1px solid #e6eaf0;
+        border-radius: 1rem;
+        box-shadow: 0 12px 35px rgba(15, 23, 42, 0.07);
+
+        .MuiFormControl-root {
+            margin-top: 1.25rem;
+        }
+    }
+
+    &__filter-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        span {
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            color: #64748b;
+        }
+
+        h3 {
+            margin: 0.3rem 0 0;
+            font-size: 1rem;
+        }
+
+        button {
+            text-transform: none;
+        }
+    }
+
+    &__results {
+        min-width: 0;
+    }
+
+    &__results-header {
+        min-height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        h2 {
+            margin: 0;
+            font-size: 1.35rem;
+            font-weight: 750;
+        }
+
+        p {
+            margin: 0.25rem 0 0;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    &__pagination {
+        display: flex;
+        justify-content: center;
+        padding: 2.5rem 0 1rem;
+    }
+
+    &__error {
+        margin-bottom: 1rem;
+    }
+
+    &__loading {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    &__skeleton {
+        height: 390px;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        background: #fff;
+        border: 1px solid #e6eaf0;
+
+        div {
+            height: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.4rem;
+            background: linear-gradient(90deg,
+                    #eef1f5,
+                    #f8fafc,
+                    #eef1f5);
+            background-size: 200% 100%;
+            animation: jobs-shimmer 1.4s infinite;
+        }
+
+        div:first-child {
+            width: 52px;
+            height: 52px;
+            border-radius: 0.8rem;
+        }
+
+        div:nth-child(2) {
+            width: 70%;
+            height: 1.4rem;
+        }
+
+        div:nth-child(3) {
+            width: 45%;
+        }
+
+        div:nth-child(4) {
+            width: 90%;
+            height: 7rem;
+        }
+    }
+
+    &__empty {
+        padding: 5rem 2rem;
+        text-align: center;
+        background: #fff;
+        border: 1px solid #e6eaf0;
+        border-radius: 1rem;
+
+        h3 {
+            margin: 1rem 0 0.4rem;
+            font-size: 1.35rem;
+        }
+
+        p {
+            margin: 0 0 1.5rem;
+            color: #64748b;
+        }
+    }
+
+    &__empty-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #eef2ff;
+        color: #4f46e5;
+    }
+}
+
+.job-card {
+    display: flex;
+    min-height: 390px;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e6eaf0;
+    border-radius: 1rem;
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+
+    &:hover {
+        transform: translateY(-3px);
+        border-color: #d4d9e2;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.09);
+    }
+
+    &__top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 1.35rem 1.35rem 0;
+    }
+
+    &__company-logo {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 0.8rem;
+        background: #eef2ff;
+        color: #4f46e5;
+        font-weight: 800;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #fff;
+        }
+    }
+
+    &__save {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.6rem;
+        background: #fff;
+        color: #64748b;
+        cursor: pointer;
+        transition: all 150ms ease;
+
+        &:hover {
+            color: #4f46e5;
+            background: #f5f7ff;
+            border-color: #c7d2fe;
+        }
+
+        svg {
+            font-size: 1.2rem;
+        }
+    }
+
+    &__content {
+        flex: 1;
+        padding: 1rem 1.35rem;
+    }
+
+    &__source-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+    }
+
+    &__source {
+        font-size: 0.68rem !important;
+        font-weight: 700 !important;
+
+        &--greenhouse {
+            background: #eef2ff !important;
+            color: #4f46e5 !important;
+        }
+
+        &--hirecoder {
+            background: #ecfdf5 !important;
+            color: #047857 !important;
+        }
+    }
+
+    &__posted {
+        color: #94a3b8;
+        font-size: 0.72rem;
+        white-space: nowrap;
+    }
+
+    &__title {
+        margin: 0.85rem 0 0.7rem;
+        color: #172033;
+        font-size: 1.15rem;
+        line-height: 1.35;
+        font-weight: 750;
+    }
+
+    &__company,
+    &__location {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-top: 0.45rem;
+        color: #64748b;
+        font-size: 0.85rem;
+
+        svg {
+            font-size: 1rem;
+        }
+    }
+
+    &__company {
+        color: #334155;
+        font-weight: 600;
+    }
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-top: 1rem;
+
+        .MuiChip-root {
+            height: 28px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+            font-size: 0.72rem;
+        }
+
+        .MuiChip-icon {
+            font-size: 0.9rem;
+        }
+    }
+
+    &__salary {
+        margin-top: 1rem;
+        color: #047857;
+        font-size: 0.9rem;
+        font-weight: 750;
+    }
+
+    &__description {
+        margin: 0.75rem 0 0;
+        color: #64748b;
+        font-size: 0.8rem;
+        line-height: 1.55;
+    }
+
+    &__footer {
+        padding: 0 1.35rem 1.35rem;
+
+        .MuiButton-root {
+            min-height: 42px;
+            border-radius: 0.65rem;
+            text-transform: none;
+            font-weight: 700;
+            box-shadow: none;
+        }
+    }
+}
+
+@keyframes jobs-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@media (max-width: 960px) {
+    .jobs-page {
+        &__container {
+            grid-template-columns: 1fr;
+        }
+
+        &__filters {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        &__filter-header {
+            grid-column: 1 / -1;
+        }
+
+        &__filters .MuiFormControl-root {
+            margin-top: 0;
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .jobs-page {
+        &__hero {
+            padding: 3rem 1rem 4.5rem;
+        }
+
+        &__hero h1 {
+            font-size: 2.5rem;
+        }
+
+        &__search {
+            grid-template-columns: 1fr;
+            padding: 0.6rem;
+        }
+
+        &__search-button {
+            min-height: 48px;
+        }
+
+        &__container {
+            padding: 0 1rem 3rem;
+        }
+
+        &__filters {
+            grid-template-columns: 1fr;
+        }
+
+        &__grid,
+        &__loading {
+            grid-template-columns: 1fr;
+        }
+
+        &__results-header {
+            align-items: flex-start;
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .jobs-page {
+        &__hero h1 {
+            font-size: 2.1rem;
+        }
+
+        &__hero p {
+            font-size: 0.9rem;
+        }
+    }
+
+    .job-card {
+        &__title {
+            font-size: 1.05rem;
+        }
+    }
+}

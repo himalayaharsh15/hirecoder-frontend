@@ -1,0 +1,107 @@
+.interview-chance {
+    height: 100%;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    background: #ffffff;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        height: auto;
+        padding: 1.5rem !important;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        width: 3.25rem;
+        height: 3.25rem;
+
+        border-radius: 0.85rem;
+        background: #eff6ff;
+
+        svg {
+            font-size: 1.75rem;
+            color: #2563eb;
+        }
+    }
+
+    &__info {
+        min-width: 0;
+    }
+
+    &__label {
+        margin-bottom: 0.35rem !important;
+        font-size: 0.7rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.08em;
+        color: #64748b;
+    }
+
+    &__value {
+        font-size: 1.5rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        color: #0f172a;
+        text-transform: capitalize;
+    }
+
+    &__description {
+        margin-top: 0.4rem !important;
+        font-size: 0.82rem !important;
+        line-height: 1.5 !important;
+        color: #64748b;
+    }
+
+    &--high {
+        .interview-chance__icon {
+            background: #ecfdf5;
+
+            svg {
+                color: #059669;
+            }
+        }
+
+        .interview-chance__value {
+            color: #059669;
+        }
+    }
+
+    &--medium {
+        .interview-chance__icon {
+            background: #fffbeb;
+
+            svg {
+                color: #d97706;
+            }
+        }
+
+        .interview-chance__value {
+            color: #d97706;
+        }
+    }
+
+    &--low {
+        .interview-chance__icon {
+            background: #fef2f2;
+
+            svg {
+                color: #dc2626;
+            }
+        }
+
+        .interview-chance__value {
+            color: #dc2626;
+        }
+    }
+
+    @media (max-width: 600px) {
+        &__content {
+            padding: 1.25rem !important;
+        }
+    }
+}

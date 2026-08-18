@@ -1,39 +1,99 @@
-import { useRef, useState } from "react";
-import ResumeInput from "../../components/resume/ResumeInput";
-import { useReviewResumeMutation } from "../../features/ai/aiApi";
+import { useState } from "react";
 
-import "./ResumeAnalyzer.scss";
+import {
+  useReviewMyResumeMutation,
+  useUploadResumeMutation,
+} from "../../features/ai/aiApi";
+
 import type { ResumeReview as ResumeReviewType } from "../../features/ai/types";
+
+import ResumeInput from "../../components/resume/ResumeInput";
 import ResumeReview from "../../components/resume/ResumeReview/ResumeReview";
 import ResumeReviewSkeleton from "../../components/resume/ResumeReviewSkeleton/ResumeReviewSkeleton";
 
+import "./ResumeAnalyzer.scss";
+
 const ResumeAnalyzer = () => {
-  const [reviewResume, { data, isLoading, error }] = useReviewResumeMutation();
   const [review, setReview] = useState<ResumeReviewType | null>(null);
-  const reviewSectionRef = useRef<HTMLDivElement>(null);
 
-  const handleAnalyze = async (resume: string) => {
+  // ============================================================
+  // Upload Resume
+  // ============================================================
+
+  const [uploadResume, { isLoading: isUploading }] = useUploadResumeMutation();
+
+  // ============================================================
+  // Analyze Resume
+  // ============================================================
+
+  const [reviewMyResume, { isLoading: isReviewing }] =
+    useReviewMyResumeMutation();
+
+  // ============================================================
+  // Handle PDF Upload
+  // ============================================================
+
+  const handleUpload = async (file: File) => {
+    await uploadResume(file).unwrap();
+
+    // Previous analysis belongs to the previous resume.
     setReview(null);
+  };
+
+  // ============================================================
+  // Handle AI Analysis
+  // ============================================================
+
+  const handleAnalyze = async () => {
     try {
-      const response = await reviewResume({ resume }).unwrap();
+      const result = await reviewMyResume().unwrap();
 
-      setReview(response);
-
-      reviewSectionRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } catch (err) {
-      console.error(err);
+      setReview(result);
+    } catch (error) {
+      console.error("Resume analysis failed:", error);
     }
   };
 
   return (
     <section className="resume-analyzer">
-      <ResumeInput onAnalyze={handleAnalyze} isLoading={isLoading} />
-      <div ref={reviewSectionRef}>
-        {isLoading && <ResumeReviewSkeleton />}
-        {review && !isLoading && <ResumeReview review={review} />}
+      <div className="resume-analyzer__container">
+        {/* ======================================================
+            Header
+        ====================================================== */}
+
+        <header className="resume-analyzer__header">
+          <span className="resume-analyzer__eyebrow">AI CAREER ASSISTANT</span>
+
+          <h1>Resume Analyzer</h1>
+
+          <p>
+            Understand how strong your resume is and discover what you can
+            improve before applying for jobs.
+          </p>
+        </header>
+
+        {/* ======================================================
+            Resume Upload
+        ====================================================== */}
+
+        <ResumeInput
+          onUpload={handleUpload}
+          onAnalyze={handleAnalyze}
+          isUploading={isUploading}
+          isAnalyzing={isReviewing}
+        />
+
+        {/* ======================================================
+            AI Analysis Loading
+        ====================================================== */}
+
+        {isReviewing && <ResumeReviewSkeleton />}
+
+        {/* ======================================================
+            AI Analysis Result
+        ====================================================== */}
+
+        {review && !isReviewing && <ResumeReview review={review} />}
       </div>
     </section>
   );

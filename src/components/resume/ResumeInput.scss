@@ -2,77 +2,305 @@
     max-width: 1000px;
     margin: 3rem auto;
     padding: 2rem;
-    border-radius: 20px !important;
     border: 1px solid #e5e7eb;
+    border-radius: 20px !important;
+    background: #ffffff;
+
+    // ============================================================
+    // Header
+    // ============================================================
 
     &__header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
         margin-bottom: 2rem;
 
         h4 {
+            margin: 0 0 0.75rem;
             font-weight: 700;
             color: #111827;
-            margin-bottom: 0.75rem;
+        }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        width: 3.5rem;
+        height: 3.5rem;
+
+        border-radius: 12px;
+        background: #eff6ff;
+
+        svg {
+            font-size: 1.8rem;
+            color: #2563eb;
         }
     }
 
     &__subtitle {
+        max-width: 720px;
         color: #6b7280;
         line-height: 1.7;
         font-size: 1rem !important;
     }
 
-    &__textarea {
-        margin-bottom: 2rem !important;
+    // ============================================================
+    // Dropzone
+    // ============================================================
 
-        textarea {
-            font-family: inherit;
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        .MuiOutlinedInput-root {
-            border-radius: 16px;
-        }
-    }
-
-    &__footer {
+    &__dropzone {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
+
+        min-height: 260px;
+        padding: 2rem;
+
+        border: 2px dashed #dbe3ee;
+        border-radius: 16px;
+
+        background: #f8fafc;
+
+        text-align: center;
+
+        cursor: pointer;
+
+        transition:
+            border-color 0.2s ease,
+            background 0.2s ease,
+            transform 0.2s ease;
+
+        &:hover {
+            border-color: #93c5fd;
+            background: #f8fbff;
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba(37, 99, 235, 0.2);
+            outline-offset: 2px;
+        }
     }
 
-    &__count {
-        color: #6b7280;
+    &__upload-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 4rem;
+        height: 4rem;
+
+        margin-bottom: 1rem;
+
+        border-radius: 50%;
+        background: #eff6ff;
+
+        svg {
+            font-size: 2rem;
+            color: #2563eb;
+        }
+    }
+
+    &__dropzone-title {
+        margin-bottom: 0.4rem !important;
+
+        font-size: 1.1rem !important;
+        font-weight: 700 !important;
+
+        color: #111827;
+    }
+
+    &__dropzone-text {
+        color: #64748b;
         font-size: 0.9rem !important;
     }
 
-    button {
-        min-width: 220px;
-        height: 52px;
-        border-radius: 12px;
-        text-transform: none;
-        font-weight: 600;
-        font-size: 1rem;
-    }
-}
+    &__hint {
+        margin-top: 0.5rem;
 
-@media (max-width: 768px) {
-    .resume-input {
+        font-size: 0.78rem;
+        color: #94a3b8;
+    }
+
+    // ============================================================
+    // Selected File
+    // ============================================================
+
+    &__file {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+
+        margin-top: 1.25rem;
+        padding: 1rem;
+
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+
+        background: #ffffff;
+    }
+
+    &__file-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 2.75rem;
+        height: 2.75rem;
+
+        flex-shrink: 0;
+
+        border-radius: 9px;
+        background: #fef2f2;
+
+        svg {
+            color: #dc2626;
+        }
+    }
+
+    &__file-info {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    &__file-name {
+        overflow: hidden;
+
+        color: #111827;
+
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__file-size {
+        margin-top: 0.2rem !important;
+
+        color: #94a3b8;
+        font-size: 0.75rem !important;
+    }
+
+    &__uploaded {
+        margin-left: auto;
+
+        padding: 0.35rem 0.7rem;
+
+        border-radius: 999px;
+
+        background: #ecfdf5;
+
+        color: #059669;
+
+        font-size: 0.72rem;
+        font-weight: 700;
+    }
+
+    // ============================================================
+    // Footer
+    // ============================================================
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 1rem;
+
+        margin-top: 1.5rem;
+    }
+
+    &__count {
+        color: #64748b;
+        font-size: 0.85rem !important;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        button {
+            min-width: 160px;
+            height: 48px;
+
+            border-radius: 10px;
+
+            text-transform: none;
+
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+    }
+
+    // ============================================================
+    // Alerts
+    // ============================================================
+
+    &__alert {
+        margin-top: 1.25rem;
+        border-radius: 10px !important;
+    }
+
+    // ============================================================
+    // Responsive
+    // ============================================================
+
+    @media (max-width: 768px) {
         margin: 2rem 1rem;
         padding: 1.5rem;
 
-        &__footer {
+        &__header {
             flex-direction: column;
-            gap: 1rem;
-            align-items: stretch;
+            gap: 0.75rem;
         }
 
-        button {
-            width: 100%;
+        &__dropzone {
+            min-height: 220px;
+            padding: 1.5rem;
+        }
+
+        &__footer {
+            flex-direction: column;
+            align-items: stretch;
         }
 
         &__count {
             text-align: center;
+        }
+
+        &__actions {
+            flex-direction: column;
+
+            button {
+                width: 100%;
+            }
+        }
+
+        &__uploaded {
+            margin-left: auto;
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 1.25rem;
+
+        &__dropzone {
+            min-height: 200px;
+        }
+
+        &__file {
+            align-items: flex-start;
+        }
+
+        &__uploaded {
+            font-size: 0.65rem;
         }
     }
 }

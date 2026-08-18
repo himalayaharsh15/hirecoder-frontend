@@ -1,23 +1,86 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { baseApi } from "../api/baseApi";
 
-import type { ResumeReview, ReviewResumeRequest } from "./types";
+import type {
+  ResumeReview,
+  ResumeUploadResponse,
+  JobMatchResponse,
+} from "./types";
 
-export const aiApi = createApi({
-  reducerPath: "aiApi",
-
-  baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000",
-  }),
-
+export const aiApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    reviewResume: builder.mutation<ResumeReview, ReviewResumeRequest>({
-      query: (body) => ({
-        url: "/ai/resume-review",
+    // ============================================================
+    // Upload Resume PDF
+    // ============================================================
+
+    uploadResume: builder.mutation<ResumeUploadResponse, File>({
+      query: (file) => {
+        const formData = new FormData();
+
+        formData.append("file", file);
+
+        return {
+          url: "/ai/resume/upload",
+          method: "POST",
+          body: formData,
+        };
+      },
+    }),
+
+    // ============================================================
+    // Review My Uploaded Resume
+    // ============================================================
+
+    reviewMyResume: builder.mutation<ResumeReview, void>({
+      query: () => ({
+        url: "/ai/resume/review",
         method: "POST",
-        body,
       }),
     }),
+
+    // ============================================================
+    // Analyze My Resume Against a Job
+    // ============================================================
+    //
+    // We only send the jobId.
+    //
+    // Backend:
+    //
+    // JWT
+    //   ↓
+    // Current User
+    //   ↓
+    // Resume from DB
+    //   +
+    // Job from DB
+    //   ↓
+    // Gemini
+    //   ↓
+    // JobMatch
+    //
+    // ============================================================
+
+    analyzeMyJobMatch: builder.mutation<JobMatchResponse, string>({
+      query: (jobId) => ({
+        url: `/ai/job-match/${jobId}`,
+        method: "POST",
+      }),
+    }),
+
+    // ============================================================
+    // Get Available AI Models
+    // ============================================================
+
+    getModels: builder.query<any, void>({
+      query: () => "/ai/models",
+    }),
   }),
+
+  overrideExisting: false,
 });
 
-export const { useReviewResumeMutation } = aiApi;
+export const {
+  useUploadResumeMutation,
+  useReviewMyResumeMutation,
+  useAnalyzeMyJobMatchMutation,
+  useGetModelsQuery,
+} = aiApi;

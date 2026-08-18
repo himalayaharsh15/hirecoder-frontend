@@ -1,0 +1,229 @@
+.recruiter-dashboard {
+    width: 100%;
+    padding: 2.5rem 1.5rem;
+    background: #f7f8fa;
+    min-height: calc(100vh - 4rem);
+
+    &__container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 2rem;
+
+        h1 {
+            margin: 0 0 0.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+    }
+
+    &__post-job {
+        flex-shrink: 0;
+        padding: 0.75rem 1.25rem;
+        border: none;
+        border-radius: 8px;
+        background: #1976d2;
+        color: #ffffff;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+
+        &:hover {
+            background: #1565c0;
+        }
+    }
+
+    &__stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    &__stat {
+        padding: 1.5rem;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        span {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        strong {
+            color: #111827;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    &__jobs,
+    &__applicants,
+    &__pipeline {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 1.5rem;
+    }
+
+    &__section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+
+        h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        button {
+            border: none;
+            background: transparent;
+            color: #1976d2;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+
+    &__empty {
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        p {
+            margin: 0 0 1rem;
+            color: #6b7280;
+        }
+
+        button {
+            padding: 0.65rem 1rem;
+            border: 1px solid #1976d2;
+            border-radius: 8px;
+            background: transparent;
+            color: #1976d2;
+            font-weight: 600;
+            cursor: pointer;
+
+            &:hover {
+                background: #f0f7ff;
+            }
+        }
+    }
+
+    &__pipeline {
+        h2 {
+            margin: 0 0 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+    }
+
+    &__pipeline-items {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+
+        div {
+            padding: 1.25rem;
+            border-radius: 10px;
+            background: #f7f8fa;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            text-align: center;
+        }
+
+        span {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        strong {
+            color: #111827;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .recruiter-dashboard {
+        &__stats {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        &__content {
+            grid-template-columns: 1fr;
+        }
+
+        &__pipeline-items {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .recruiter-dashboard {
+        padding: 1.5rem 1rem;
+
+        &__header {
+            align-items: flex-start;
+            flex-direction: column;
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            width: 100%;
+        }
+
+        &__post-job {
+            width: 100%;
+        }
+
+        &__stats {
+            grid-template-columns: 1fr;
+        }
+
+        &__stat {
+            padding: 1.25rem;
+        }
+
+        &__pipeline-items {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}

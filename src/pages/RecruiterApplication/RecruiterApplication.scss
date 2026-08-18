@@ -1,0 +1,173 @@
+.recruiter-applications {
+    min-height: 100%;
+    padding: 2rem;
+    background: #f6f8fc;
+
+    &--loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 70vh;
+    }
+
+    &__container {
+        width: 100%;
+        max-width: 75rem;
+        margin: 0 auto;
+    }
+
+    &__back {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+
+        margin-bottom: 1.5rem;
+        padding: 0;
+
+        border: 0;
+        background: transparent;
+
+        color: #1976d2;
+        font-size: 0.9rem;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.75;
+        }
+
+        svg {
+            font-size: 1.1rem;
+        }
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 2rem;
+        margin-bottom: 2rem;
+
+        h1 {
+            margin: 0.35rem 0 0.5rem;
+
+            color: #172033;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+    }
+
+    &__eyebrow {
+        color: #1976d2;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+    }
+
+    &__count {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 8rem;
+        padding: 1rem 1.5rem;
+
+        border: 1px solid #e2e8f0;
+        border-radius: 0.8rem;
+
+        background: #ffffff;
+
+        strong {
+            color: #172033;
+            font-size: 1.7rem;
+            line-height: 1.2;
+        }
+
+        span {
+            margin-top: 0.25rem;
+            color: #64748b;
+            font-size: 0.75rem;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        min-height: 20rem;
+        padding: 3rem 2rem;
+
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+
+        background: #ffffff;
+        text-align: center;
+
+        h2 {
+            margin: 1rem 0 0.5rem;
+
+            color: #172033;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    }
+
+    &__empty-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 4rem;
+        height: 4rem;
+
+        border-radius: 50%;
+        background: #eff6ff;
+
+        color: #1976d2;
+
+        svg {
+            font-size: 2rem;
+        }
+    }
+}
+
+@media (max-width: 48rem) {
+    .recruiter-applications {
+        padding: 1rem;
+
+        &__header {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        &__count {
+            align-items: flex-start;
+            width: 100%;
+        }
+    }
+}

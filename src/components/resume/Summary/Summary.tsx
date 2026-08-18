@@ -1,26 +1,36 @@
+import { AutoAwesomeOutlined } from "@mui/icons-material";
 import { Card, CardContent, Typography } from "@mui/material";
-import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 
 import "./Summary.scss";
 
-interface SummaryCardProps {
+interface SummaryProps {
   summary: string;
 }
 
-const SummaryCard = ({ summary }: SummaryCardProps) => {
+const Summary = ({ summary }: SummaryProps) => {
   return (
-    <Card className="summary-card" elevation={0}>
+    <Card className="resume-summary" elevation={0}>
       <CardContent>
-        <div className="summary-card__header">
-          <AutoAwesomeRoundedIcon />
+        <div className="resume-summary__header">
+          <div className="resume-summary__icon">
+            <AutoAwesomeOutlined />
+          </div>
 
-          <Typography variant="h5">AI Career Insight</Typography>
+          <div>
+            <Typography className="resume-summary__label">
+              AI RECRUITER SUMMARY
+            </Typography>
+
+            <Typography className="resume-summary__title">
+              Recruiter's Assessment
+            </Typography>
+          </div>
         </div>
 
-        <Typography className="summary-card__description">{summary}</Typography>
+        <Typography className="resume-summary__text">{summary}</Typography>
       </CardContent>
     </Card>
   );
 };
 
-export default SummaryCard;
+export default Summary;

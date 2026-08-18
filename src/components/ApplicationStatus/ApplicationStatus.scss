@@ -1,0 +1,47 @@
+.application-status {
+    font-weight: 600;
+
+    &--applied {
+        color: #1d4ed8;
+        background: #dbeafe;
+    }
+
+    &--under_review {
+        color: #92400e;
+        background: #fef3c7;
+    }
+
+    &--shortlisted {
+        color: #6d28d9;
+        background: #ede9fe;
+    }
+
+    &--interview_scheduled {
+        color: #0369a1;
+        background: #e0f2fe;
+    }
+
+    &--offered {
+        color: #047857;
+        background: #d1fae5;
+    }
+
+    &--rejected {
+        color: #b91c1c;
+        background: #fee2e2;
+    }
+
+    &--hired {
+        color: #166534;
+        background: #dcfce7;
+    }
+
+    &--withdrawn {
+        color: #64748b;
+        background: #f1f5f9;
+    }
+
+    &__select {
+        min-width: 10rem;
+    }
+}

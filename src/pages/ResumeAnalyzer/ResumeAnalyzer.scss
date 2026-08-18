@@ -1,0 +1,182 @@
+.resume-analyzer {
+    min-height: 100%;
+    padding: 3rem 1.5rem 4rem;
+
+    &__container {
+        width: min(100%, 56rem);
+        margin: 0 auto;
+    }
+
+    &__header {
+        margin-bottom: 2rem;
+    }
+
+    &__eyebrow {
+        display: inline-block;
+        margin-bottom: 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        opacity: 0.65;
+    }
+
+    &__header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+    }
+
+    &__header p {
+        max-width: 42rem;
+        margin: 0.9rem 0 0;
+        line-height: 1.7;
+        opacity: 0.7;
+    }
+
+    // ============================================================
+    // Upload Card
+    // ============================================================
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem 2rem;
+        text-align: center;
+        border: 1px dashed rgba(0, 0, 0, 0.2);
+        border-radius: 1rem;
+        background: #fff;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 4rem;
+        height: 4rem;
+        margin-bottom: 1.25rem;
+        border-radius: 50%;
+        background: #f1f5f9;
+
+        svg {
+            font-size: 2rem;
+        }
+    }
+
+    &__card h2 {
+        margin: 0;
+        font-size: 1.35rem;
+    }
+
+    &__card>p {
+        margin: 0.6rem 0 0;
+        opacity: 0.7;
+    }
+
+    &__hint {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        opacity: 0.55;
+    }
+
+    // ============================================================
+    // Buttons
+    // ============================================================
+
+    &__choose,
+    &__upload {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 2.75rem;
+        padding: 0.7rem 1.4rem;
+        margin-top: 1.5rem;
+        border: 0;
+        border-radius: 0.6rem;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease;
+    }
+
+    &__choose {
+        background: #0f172a;
+        color: #fff;
+    }
+
+    &__upload {
+        background: #2563eb;
+        color: #fff;
+    }
+
+    &__choose:hover:not(:disabled),
+    &__upload:hover:not(:disabled) {
+        transform: translateY(-1px);
+    }
+
+    &__choose:disabled,
+    &__upload:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    // ============================================================
+    // Selected File
+    // ============================================================
+
+    &__file {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        width: min(100%, 30rem);
+        margin-top: 1.5rem;
+        padding: 0.9rem 1rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.7rem;
+        text-align: left;
+        background: #f8fafc;
+
+        svg {
+            flex-shrink: 0;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        strong {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        span {
+            margin-top: 0.2rem;
+            font-size: 0.75rem;
+            opacity: 0.6;
+        }
+    }
+
+    &__alert {
+        width: min(100%, 30rem);
+        margin-top: 1.5rem;
+    }
+
+    // ============================================================
+    // Responsive
+    // ============================================================
+
+    @media (max-width: 40rem) {
+        padding: 2rem 1rem 3rem;
+
+        &__card {
+            padding: 2.25rem 1rem;
+        }
+    }
+}

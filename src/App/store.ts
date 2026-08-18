@@ -1,12 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { aiApi } from "../features/ai/aiApi";
+
+import authReducer from "../features/auth/authSlice";
+import { baseApi } from "../features/api/baseApi";
 
 export const store = configureStore({
   reducer: {
-    [aiApi.reducerPath]: aiApi.reducer,
+    auth: authReducer,
+
+    [baseApi.reducerPath]: baseApi.reducer,
   },
+
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(aiApi.middleware),
+    getDefaultMiddleware().concat(baseApi.middleware),
+
   devTools: import.meta.env.DEV,
 });
 
