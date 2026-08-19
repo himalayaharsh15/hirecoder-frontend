@@ -1,0 +1,342 @@
+.interview-session {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.25rem;
+
+    margin-top: 2.5rem;
+
+    &__header {
+        text-align: center;
+    }
+
+    &__eyebrow {
+        color: #7c3aed;
+
+        font-size: 0.7rem;
+        font-weight: 700;
+
+        letter-spacing: 0.1em;
+    }
+
+    &__title {
+        margin-top: 0.4rem !important;
+
+        color: #111827;
+
+        font-size: 1.8rem !important;
+        font-weight: 700 !important;
+    }
+
+    &__subtitle {
+        margin-top: 0.35rem !important;
+
+        color: #64748b;
+
+        font-size: 0.95rem !important;
+    }
+
+    // ============================================================
+    // Progress
+    // ============================================================
+
+    &__progress {
+        display: flex;
+        flex-direction: column;
+
+        gap: 0.5rem;
+
+        color: #64748b;
+
+        font-size: 0.85rem;
+    }
+
+    &__progress-bar {
+        width: 100%;
+        height: 0.35rem;
+
+        overflow: hidden;
+
+        border-radius: 999px;
+
+        background: #e5e7eb;
+    }
+
+    &__progress-value {
+        height: 100%;
+
+        border-radius: inherit;
+
+        background: #7c3aed;
+
+        transition: width 0.3s ease;
+    }
+
+    // ============================================================
+    // Question
+    // ============================================================
+
+    &__question-card {
+        border: 1px solid #e5e7eb;
+
+        border-radius: 1rem !important;
+    }
+
+    &__question-label {
+        display: flex;
+        align-items: center;
+
+        gap: 0.5rem;
+
+        color: #7c3aed;
+
+        font-size: 0.8rem;
+        font-weight: 700;
+
+        svg {
+            font-size: 1.1rem;
+        }
+    }
+
+    &__difficulty {
+        padding: 0.25rem 0.6rem;
+
+        border-radius: 999px;
+
+        background: #fef3c7;
+
+        color: #92400e;
+
+        font-size: 0.7rem;
+    }
+
+    &__question {
+        margin-top: 1.25rem !important;
+        margin-bottom: 1.5rem !important;
+
+        color: #111827;
+
+        font-size: 1.2rem !important;
+        font-weight: 600 !important;
+
+        line-height: 1.7 !important;
+    }
+
+    &__answer {
+        textarea {
+            line-height: 1.7;
+        }
+
+        .MuiOutlinedInput-root {
+            border-radius: 0.8rem;
+        }
+    }
+
+    // ============================================================
+    // Actions
+    // ============================================================
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+
+        gap: 0.75rem;
+
+        margin-top: 1rem;
+    }
+
+    &__voice-button,
+    &__submit-button {
+        min-height: 46px;
+
+        border-radius: 0.7rem !important;
+
+        text-transform: none !important;
+
+        font-weight: 600 !important;
+    }
+
+    // ============================================================
+    // Evaluation
+    // ============================================================
+
+    &__evaluation {
+        border: 1px solid #e5e7eb;
+
+        border-radius: 1rem !important;
+    }
+
+    &__score {
+        text-align: center;
+
+        padding-bottom: 2rem;
+
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    &__score-label {
+        color: #64748b;
+
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+    }
+
+    &__score-value {
+        margin-top: 0.25rem !important;
+
+        color: #7c3aed;
+
+        font-size: 3rem !important;
+        font-weight: 800 !important;
+
+        span {
+            color: #94a3b8;
+
+            font-size: 1.2rem;
+        }
+    }
+
+    &__feedback {
+        margin-top: 1.5rem;
+
+        padding: 1.25rem;
+
+        border-radius: 0.8rem;
+
+        background: #f8fafc;
+
+        ul {
+            margin: 0.75rem 0 0;
+            padding-left: 1.25rem;
+
+            li {
+                margin-bottom: 0.5rem;
+
+                color: #475569;
+
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+        }
+    }
+
+    &__feedback-title {
+        display: flex;
+        align-items: center;
+
+        gap: 0.5rem;
+
+        color: #374151;
+
+        font-size: 0.85rem;
+        font-weight: 700;
+
+        svg {
+            font-size: 1.15rem;
+        }
+    }
+
+    &__ideal-answer {
+        margin-top: 1.5rem;
+
+        padding: 1.25rem;
+
+        border-radius: 0.8rem;
+
+        background: #faf5ff;
+
+        p {
+            margin-top: 0.75rem;
+
+            color: #475569;
+
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+    }
+
+    &__follow-up {
+        margin-top: 1.5rem;
+
+        padding: 1.25rem;
+
+        border-left: 3px solid #7c3aed;
+
+        background: #f8fafc;
+
+        p {
+            margin-top: 0.5rem;
+
+            color: #475569;
+
+            line-height: 1.6;
+        }
+    }
+
+    &__follow-up-label {
+        color: #7c3aed;
+
+        font-size: 0.8rem !important;
+        font-weight: 700 !important;
+    }
+
+    &__next {
+        display: flex;
+        justify-content: flex-end;
+
+        margin-top: 1.5rem;
+
+        button {
+            min-height: 46px;
+
+            padding: 0.65rem 1.25rem;
+
+            border-radius: 0.7rem;
+
+            text-transform: none;
+
+            font-weight: 600;
+        }
+    }
+
+    &__voice-button {
+        min-width: 170px;
+
+        &--recording {
+            border-color: #dc2626 !important;
+
+            color: #dc2626 !important;
+
+            animation: recording-pulse 1.5s infinite;
+        }
+    }
+
+    @keyframes recording-pulse {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.65;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        &__actions {
+            flex-direction: column;
+        }
+
+        &__voice-button,
+        &__submit-button {
+            width: 100%;
+        }
+
+        &__question {
+            font-size: 1.05rem !important;
+        }
+    }
+}

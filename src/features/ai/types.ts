@@ -68,3 +68,47 @@ export interface JobMatchResponse {
 
   analysis: JobMatch;
 }
+
+export interface InterviewQuestion {
+  question: string;
+  category: string;
+  difficulty: string;
+  whyAsked: string;
+}
+
+export interface InterviewPrep {
+  questions: InterviewQuestion[];
+}
+
+export interface InterviewPrepResponse {
+  job: {
+    id: string;
+    title: string;
+  };
+
+  resume: {
+    id: string;
+    fileName: string;
+  };
+
+  interviewPrep: InterviewPrep;
+}
+
+export interface InterviewEvaluation {
+  score: number;
+  strengths: string[];
+  improvements: string[];
+  idealAnswer: string;
+  followUpQuestion: string;
+}
+
+export interface InterviewEvaluationResponse {
+  job: {
+    id: string;
+    title: string;
+  };
+
+  question: string;
+
+  evaluation: InterviewEvaluation;
+}

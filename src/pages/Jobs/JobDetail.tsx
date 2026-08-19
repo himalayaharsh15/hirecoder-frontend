@@ -29,10 +29,16 @@ import {
 import ApplyJobDialog from "../../components/Jobs/ApplyJobDialog";
 
 import "./JobDetail.scss";
-import type { JobMatch } from "../../features/ai/types";
-import { useAnalyzeMyJobMatchMutation } from "../../features/ai/aiApi";
+import type { InterviewPrep, JobMatch } from "../../features/ai/types";
+import {
+  useAnalyzeMyJobMatchMutation,
+  useGenerateInterviewPrepMutation,
+} from "../../features/ai/aiApi";
 import JobMatchSkeleton from "../../components/Jobs/JobMatch/JobMatchSkeleton";
 import JobMatchResult from "../../components/Jobs/JobMatch/JobMatchResult";
+import InterviewPrepSkeleton from "../../components/Jobs/InterviewPrepResult/InterviewPrepSkeleton";
+import InterviewPrepResult from "../../components/Jobs/InterviewPrepResult/InterviewPrepResult";
+import InterviewSession from "../../components/InterviewSession/InterviewSession";
 
 // ============================================================
 // FORMATTING HELPERS
@@ -122,8 +128,12 @@ const JobDetails = () => {
   const [isApplyDialogOpen, setIsApplyDialogOpen] = useState(false);
 
   const [jobMatchResult, setJobMatchResult] = useState<JobMatch | null>(null);
+  const [interviewPrep, setInterviewPrep] = useState<InterviewPrep | null>(
+    null,
+  );
 
   const jobMatchResultRef = useRef<HTMLDivElement | null>(null);
+  const interviewPrepRef = useRef<HTMLDivElement | null>(null);
 
   // ============================================================
   // JOB
@@ -166,6 +176,9 @@ const JobDetails = () => {
 
   const [analyzeMyJobMatch, { isLoading: isAnalyzingMatch }] =
     useAnalyzeMyJobMatchMutation();
+
+  const [generateInterviewPrep, { isLoading: isPreparingInterview }] =
+    useGenerateInterviewPrepMutation();
 
   // ============================================================
   // APPLICATION STATUS
@@ -245,6 +258,31 @@ const JobDetails = () => {
       setJobMatchResult(response.analysis);
     } catch (error) {
       console.error("Failed to analyze job match:", error);
+    }
+  };
+
+  // ============================================================
+  // Gives Relevent Question for Interview
+  // ============================================================
+
+  const handlePrepareInterview = async () => {
+    if (!jobId || isPreparingInterview) {
+      return;
+    }
+
+    try {
+      setTimeout(() => {
+        interviewPrepRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 50);
+
+      const response = await generateInterviewPrep(jobId).unwrap();
+
+      setInterviewPrep(response.interviewPrep);
+    } catch (error) {
+      console.error("Failed to generate interview preparation:", error);
     }
   };
 
@@ -782,6 +820,32 @@ const JobDetails = () => {
             </div>
           </aside>
         </div>
+
+        {/* ==================================================
+    AI JOB MATCH
+================================================== */}
+
+        <div ref={jobMatchResultRef}>
+          {isAnalyzingMatch && <JobMatchSkeleton />}
+
+          {jobMatchResult && !isAnalyzingMatch && (
+            <JobMatchResult
+              onPrepareInterview={handlePrepareInterview}
+              isPreparingInterview={isPreparingInterview}
+              result={jobMatchResult}
+            />
+          )}
+          <div ref={interviewPrepRef}>
+            {isPreparingInterview && <InterviewPrepSkeleton />}
+
+            {interviewPrep && !isPreparingInterview && (
+              <InterviewPrepResult prep={interviewPrep} />
+            )}
+          </div>
+          {interviewPrep && (
+            <InterviewSession jobId={jobId} prep={interviewPrep} />
+          )}
+        </div>
       </div>
 
       {/* ========================================================
@@ -799,18 +863,6 @@ const JobDetails = () => {
           onSubmit={handleSubmitApplication}
         />
       )}
-
-      {/* ==================================================
-    AI JOB MATCH
-================================================== */}
-
-      <div ref={jobMatchResultRef}>
-        {isAnalyzingMatch && <JobMatchSkeleton />}
-
-        {jobMatchResult && !isAnalyzingMatch && (
-          <JobMatchResult result={jobMatchResult} />
-        )}
-      </div>
     </section>
   );
 };

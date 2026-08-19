@@ -4,6 +4,8 @@ import type {
   ResumeReview,
   ResumeUploadResponse,
   JobMatchResponse,
+  InterviewPrepResponse,
+  InterviewEvaluationResponse,
 } from "./types";
 
 export const aiApi = baseApi.injectEndpoints({
@@ -66,12 +68,48 @@ export const aiApi = baseApi.injectEndpoints({
       }),
     }),
 
+    generateInterviewPrep: builder.mutation<InterviewPrepResponse, string>({
+      query: (jobId) => ({
+        url: `/ai/interview-prep/${jobId}`,
+        method: "POST",
+      }),
+    }),
+
     // ============================================================
     // Get Available AI Models
     // ============================================================
 
     getModels: builder.query<any, void>({
       query: () => "/ai/models",
+    }),
+
+    evaluateInterviewAnswer: builder.mutation<
+      InterviewEvaluationResponse,
+      {
+        jobId: string;
+        question: string;
+        answer: string;
+      }
+    >({
+      query: ({ jobId, question, answer }) => ({
+        url: `/ai/interview/evaluate/${jobId}`,
+        method: "POST",
+        body: {
+          question,
+          answer,
+        },
+      }),
+    }),
+
+    transcribeInterviewAudio: builder.mutation<
+      { transcript: string },
+      FormData
+    >({
+      query: (formData) => ({
+        url: "/ai/interview/transcribe",
+        method: "POST",
+        body: formData,
+      }),
     }),
   }),
 
@@ -83,4 +121,7 @@ export const {
   useReviewMyResumeMutation,
   useAnalyzeMyJobMatchMutation,
   useGetModelsQuery,
+  useGenerateInterviewPrepMutation,
+  useEvaluateInterviewAnswerMutation,
+  useTranscribeInterviewAudioMutation,
 } = aiApi;

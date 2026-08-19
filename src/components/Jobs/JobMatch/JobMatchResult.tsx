@@ -1,4 +1,5 @@
 import {
+  AutoAwesome,
   CheckCircleOutlined,
   LightbulbOutlined,
   PsychologyOutlined,
@@ -7,7 +8,7 @@ import {
   WarningAmberOutlined,
 } from "@mui/icons-material";
 
-import { Card, CardContent, Chip, Typography } from "@mui/material";
+import { Button, Card, CardContent, Chip, Typography } from "@mui/material";
 
 import type { JobMatch } from "../../../features/ai/types";
 
@@ -15,6 +16,8 @@ import "./JobMatchResult.scss";
 
 interface JobMatchResultProps {
   result: JobMatch;
+  onPrepareInterview: () => void;
+  isPreparingInterview?: boolean;
 }
 
 const getMatchStatus = (score: number) => {
@@ -45,7 +48,11 @@ const getMatchStatus = (score: number) => {
   };
 };
 
-const JobMatchResult = ({ result }: JobMatchResultProps) => {
+const JobMatchResult = ({
+  result,
+  onPrepareInterview,
+  isPreparingInterview = false,
+}: JobMatchResultProps) => {
   const matchStatus = getMatchStatus(result.matchScore);
 
   return (
@@ -312,6 +319,44 @@ const JobMatchResult = ({ result }: JobMatchResultProps) => {
               No additional recommendations.
             </Typography>
           )}
+        </CardContent>
+      </Card>
+
+      {/* ======================================================
+    Interview Preparation CTA
+====================================================== */}
+
+      <Card className="job-match-result__interview-cta" elevation={0}>
+        <CardContent>
+          <div className="job-match-result__interview-cta-content">
+            <div className="job-match-result__interview-cta-icon">
+              <AutoAwesome />
+            </div>
+
+            <div className="job-match-result__interview-cta-info">
+              <Typography className="job-match-result__interview-cta-title">
+                Prepare for This Interview
+              </Typography>
+
+              <Typography className="job-match-result__interview-cta-description">
+                Get interview questions generated specifically from your resume
+                and this job description.
+              </Typography>
+            </div>
+
+            <Button
+              variant="contained"
+              size="large"
+              startIcon={<AutoAwesome />}
+              className="job-match-result__interview-cta-button"
+              onClick={onPrepareInterview}
+              disabled={isPreparingInterview}
+            >
+              {isPreparingInterview
+                ? "Preparing..."
+                : "Prepare Me for This Interview"}
+            </Button>
+          </div>
         </CardContent>
       </Card>
 

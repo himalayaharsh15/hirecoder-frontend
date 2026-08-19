@@ -475,6 +475,78 @@
         line-height: 1.8 !important;
     }
 
+
+    // ============================================================
+    // Interview Preparation CTA
+    // ============================================================
+
+    &__interview-cta {
+        border: 1px solid #dbeafe;
+        border-radius: 1rem !important;
+
+        background: #f8fbff;
+    }
+
+    &__interview-cta-content {
+        display: flex;
+        align-items: center;
+
+        gap: 1rem;
+    }
+
+    &__interview-cta-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 3rem;
+        height: 3rem;
+
+        flex-shrink: 0;
+
+        border-radius: 0.8rem;
+
+        background: #eff6ff;
+
+        svg {
+            color: #2563eb;
+        }
+    }
+
+    &__interview-cta-info {
+        flex: 1;
+    }
+
+    &__interview-cta-title {
+        color: #111827;
+
+        font-size: 1.05rem !important;
+        font-weight: 700 !important;
+    }
+
+    &__interview-cta-description {
+        margin-top: 0.25rem !important;
+
+        color: #64748b;
+
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+    }
+
+    &__interview-cta-button {
+        flex-shrink: 0;
+
+        min-height: 46px;
+
+        padding: 0.65rem 1.1rem !important;
+
+        border-radius: 0.7rem !important;
+
+        text-transform: none !important;
+
+        font-weight: 600 !important;
+    }
+
     // ============================================================
     // Responsive
     // ============================================================
@@ -512,6 +584,19 @@
 
         &__experience-chip {
             margin-left: 0;
+        }
+
+        &__interview-cta-content {
+            align-items: stretch;
+            flex-direction: column;
+        }
+
+        &__interview-cta-icon {
+            align-self: flex-start;
+        }
+
+        &__interview-cta-button {
+            width: 100%;
         }
     }
 }
