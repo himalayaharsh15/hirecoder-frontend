@@ -75,11 +75,8 @@ const RecruiterJobs = () => {
 
   const jobs = data?.jobs ?? [];
 
-  const {
-    data: applicationSummary,
-    isLoading: isApplicationSummaryLoading,
-    isError: isApplicationSummaryError,
-  } = useGetRecruiterApplicationSummaryQuery();
+  const { data: applicationSummary, isLoading: isApplicationSummaryLoading } =
+    useGetRecruiterApplicationSummaryQuery();
 
   const handleDelete = async (jobId: string, title: string) => {
     const confirmed = window.confirm(

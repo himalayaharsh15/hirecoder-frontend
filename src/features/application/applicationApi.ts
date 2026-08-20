@@ -1,7 +1,6 @@
 import { baseApi } from "../api/baseApi";
 
 import type {
-  ApplicantsPagination,
   ApplicantsResponse,
   GetJobApplicantsParams,
   MyApplication,

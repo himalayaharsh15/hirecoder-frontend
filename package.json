@@ -25,6 +25,7 @@
     "react-redux": "^9.3.0",
     "react-router-dom": "^7.18.1",
     "sass": "^1.102.0",
+    "serve": "^14.2.6",
     "zod": "^4.4.3"
   },
   "devDependencies": {
