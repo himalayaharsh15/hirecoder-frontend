@@ -18,7 +18,6 @@ export const aiApi = baseApi.injectEndpoints({
     uploadResume: builder.mutation<ResumeUploadResponse, File>({
       query: (file) => {
         const formData = new FormData();
-
         formData.append("file", file);
 
         return {
@@ -27,6 +26,7 @@ export const aiApi = baseApi.injectEndpoints({
           body: formData,
         };
       },
+      invalidatesTags: ["Resume"],
     }),
 
     // ============================================================
@@ -125,6 +125,7 @@ export const aiApi = baseApi.injectEndpoints({
         url: "/ai/resume",
         method: "GET",
       }),
+      providesTags: ["Resume"],
     }),
   }),
 
