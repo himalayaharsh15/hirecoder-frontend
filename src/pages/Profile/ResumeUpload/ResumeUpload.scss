@@ -1,0 +1,62 @@
+.resume-upload {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    padding: 1.5rem;
+    margin-top: 2rem;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 16px !important;
+    background: #ffffff;
+}
+
+.resume-upload__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 12px;
+    background: #f3f4f6;
+
+    svg {
+        font-size: 28px;
+    }
+}
+
+.resume-upload__content {
+    flex: 1;
+}
+
+.resume-upload__title {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #111827;
+}
+
+.resume-upload__description {
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.75rem !important;
+
+    color: #6b7280;
+    font-size: 0.9rem !important;
+    line-height: 1.6;
+}
+
+.resume-upload__file {
+    margin-bottom: 0.75rem !important;
+
+    color: #374151;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+}
+
+@media (max-width: 600px) {
+    .resume-upload {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

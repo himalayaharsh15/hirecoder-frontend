@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Alert,
@@ -22,6 +22,7 @@ interface ApplyJobDialogProps {
   companyName: string;
   companyLogoUrl?: string | null;
   isApplying: boolean;
+  initialCoverLetter?: string;
   onClose: () => void;
   onSubmit: (coverLetter?: string) => Promise<void>;
 }
@@ -32,10 +33,17 @@ const ApplyJobDialog = ({
   companyName,
   companyLogoUrl,
   isApplying,
+  initialCoverLetter = "",
   onClose,
   onSubmit,
 }: ApplyJobDialogProps) => {
-  const [coverLetter, setCoverLetter] = useState("");
+  const [coverLetter, setCoverLetter] = useState(initialCoverLetter);
+
+  useEffect(() => {
+    if (open) {
+      setCoverLetter(initialCoverLetter);
+    }
+  }, [initialCoverLetter, open]);
 
   const handleClose = () => {
     if (isApplying) {

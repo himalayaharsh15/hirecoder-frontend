@@ -57,6 +57,8 @@ export const baseApi = createApi({
     "SavedJob",
     "Dashboard",
     "Jobs",
+    "Resume",
+    "CandidateDashboard",
   ],
 
   /**

@@ -6,6 +6,7 @@ import type {
   JobMatchResponse,
   InterviewPrepResponse,
   InterviewEvaluationResponse,
+  UserResume,
 } from "./types";
 
 export const aiApi = baseApi.injectEndpoints({
@@ -111,6 +112,20 @@ export const aiApi = baseApi.injectEndpoints({
         body: formData,
       }),
     }),
+
+    generateCoverLetter: builder.mutation<{ coverLetter: string }, string>({
+      query: (jobId) => ({
+        url: `/ai/cover-letter/${jobId}`,
+        method: "POST",
+      }),
+    }),
+
+    getMyResume: builder.query<{ resume: UserResume | null }, void>({
+      query: () => ({
+        url: "/ai/resume",
+        method: "GET",
+      }),
+    }),
   }),
 
   overrideExisting: false,
@@ -124,4 +139,6 @@ export const {
   useGenerateInterviewPrepMutation,
   useEvaluateInterviewAnswerMutation,
   useTranscribeInterviewAudioMutation,
+  useGenerateCoverLetterMutation,
+  useGetMyResumeQuery,
 } = aiApi;

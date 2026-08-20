@@ -112,3 +112,11 @@ export interface InterviewEvaluationResponse {
 
   evaluation: InterviewEvaluation;
 }
+
+export interface UserResume {
+  id: string;
+  fileName: string;
+  fileUrl: string | null;
+  createdAt?: string;
+  updatedAt?: string;
+}

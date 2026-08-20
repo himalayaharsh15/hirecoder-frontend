@@ -7,6 +7,8 @@ import {
 } from "../../features/Profile/profileApi";
 
 import "./ProfileForm.scss";
+import ResumeUpload from "./ResumeUpload/ResumeUpload";
+import { useGetMyResumeQuery } from "../../features/ai/aiApi";
 
 interface ProfileFormProps {
   profile?: CreateProfileRequest;
@@ -17,12 +19,23 @@ const ProfileForm = ({ profile, onSuccess }: ProfileFormProps) => {
   const [createOrUpdateProfile, { isLoading }] =
     useCreateOrUpdateProfileMutation();
 
+  const { data: resumeData } = useGetMyResumeQuery();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateProfileRequest>({
-    defaultValues: profile,
+    defaultValues: {
+      headline: profile?.headline ?? "",
+      location: profile?.location ?? "",
+      experience: profile?.experience ?? 0,
+      skills: profile?.skills ?? [],
+      bio: profile?.bio ?? "",
+      githubUrl: profile?.githubUrl ?? "",
+      linkedinUrl: profile?.linkedinUrl ?? "",
+      portfolioUrl: profile?.portfolioUrl ?? "",
+    },
   });
 
   const onSubmit = async (data: CreateProfileRequest) => {
@@ -114,6 +127,8 @@ const ProfileForm = ({ profile, onSuccess }: ProfileFormProps) => {
           fullWidth
           {...register("portfolioUrl")}
         />
+
+        <ResumeUpload resume={resumeData?.resume} />
       </div>
 
       <div className="profile-form__actions">

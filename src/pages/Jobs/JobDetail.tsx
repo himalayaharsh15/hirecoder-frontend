@@ -39,6 +39,7 @@ import JobMatchResult from "../../components/Jobs/JobMatch/JobMatchResult";
 import InterviewPrepSkeleton from "../../components/Jobs/InterviewPrepResult/InterviewPrepSkeleton";
 import InterviewPrepResult from "../../components/Jobs/InterviewPrepResult/InterviewPrepResult";
 import InterviewSession from "../../components/InterviewSession/InterviewSession";
+import CoverLetter from "../../components/Jobs/CoverLetter/CoverLetter";
 
 // ============================================================
 // FORMATTING HELPERS
@@ -131,6 +132,8 @@ const JobDetails = () => {
   const [interviewPrep, setInterviewPrep] = useState<InterviewPrep | null>(
     null,
   );
+
+  const [generatedCoverLetter, setGeneratedCoverLetter] = useState("");
 
   const jobMatchResultRef = useRef<HTMLDivElement | null>(null);
   const interviewPrepRef = useRef<HTMLDivElement | null>(null);
@@ -402,7 +405,6 @@ const JobDetails = () => {
       await applyToJob({
         jobId,
         coverLetter,
-        resumeUrl: undefined,
       }).unwrap();
 
       // Close application dialog.
@@ -752,6 +754,18 @@ const JobDetails = () => {
                 )}
               </Button>
 
+              {job.source === "HIRECODER" && jobId && (
+                <CoverLetter
+                  jobId={jobId}
+                  onUseLetter={(coverLetter) => {
+                    setGeneratedCoverLetter(coverLetter);
+
+                    // Open the application dialog
+                    setIsApplyDialogOpen(true);
+                  }}
+                />
+              )}
+
               {isExternalJob && (
                 <p className="job-details__external-note">
                   This job is provided by an external hiring platform. You'll be
@@ -842,7 +856,7 @@ const JobDetails = () => {
               <InterviewPrepResult prep={interviewPrep} />
             )}
           </div>
-          {interviewPrep && (
+          {jobId && interviewPrep && (
             <InterviewSession jobId={jobId} prep={interviewPrep} />
           )}
         </div>
@@ -859,6 +873,7 @@ const JobDetails = () => {
           companyName={companyName}
           companyLogoUrl={job.company?.logoUrl}
           isApplying={isApplying}
+          initialCoverLetter={generatedCoverLetter}
           onClose={() => setIsApplyDialogOpen(false)}
           onSubmit={handleSubmitApplication}
         />

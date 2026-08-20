@@ -140,22 +140,23 @@ export const jobsApi = baseApi.injectEndpoints({
         application: {
           id: string;
           status: string;
+          coverLetter?: string;
+          resumeUrl?: string | null;
         };
       },
       {
         jobId: string;
         coverLetter?: string;
-        resumeUrl?: string;
       }
     >({
-      query: ({ jobId, coverLetter, resumeUrl }) => ({
+      query: ({ jobId, coverLetter }) => ({
         url: `/jobs/${jobId}/apply`,
         method: "POST",
         body: {
           coverLetter,
-          resumeUrl,
         },
       }),
+
       invalidatesTags: (_result, _error, { jobId }) => [
         { type: "Jobs", id: `APPLICATION-${jobId}` },
         { type: "Jobs", id: jobId },

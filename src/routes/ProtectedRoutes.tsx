@@ -12,6 +12,8 @@ import CreateJob from "../pages/Recruiter/CreateJob";
 import RecruiterApplications from "../pages/RecruiterApplication/RecruiterApplication";
 import MyApplications from "../pages/MyApplications/MyApplications";
 import ResumeAnalyzer from "../pages/ResumeAnalyzer/ResumeAnalyzer";
+import InterviewSessionPage from "../components/InterviewPrep/InterviewSessionPage";
+import InterviewPrepPage from "../components/InterviewPrep/InterviewPrep";
 
 const ProtectedRoutes: RouteObject[] = [
   {
@@ -94,6 +96,23 @@ const ProtectedRoutes: RouteObject[] = [
         element: (
           <RoleProtectedRoute allowedRoles={["CANDIDATE"]}>
             <ResumeAnalyzer />
+          </RoleProtectedRoute>
+        ),
+      },
+
+      {
+        path: "/interview-prep",
+        element: (
+          <RoleProtectedRoute allowedRoles={["CANDIDATE"]}>
+            <InterviewPrepPage />
+          </RoleProtectedRoute>
+        ),
+      },
+      {
+        path: "/interview-session/:jobId",
+        element: (
+          <RoleProtectedRoute allowedRoles={["CANDIDATE"]}>
+            <InterviewSessionPage />
           </RoleProtectedRoute>
         ),
       },
