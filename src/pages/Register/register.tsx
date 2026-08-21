@@ -16,6 +16,7 @@ import { useRegisterMutation } from "../../features/auth/authApi";
 import { registerSchema, type RegisterFormData } from "./registerSchema";
 
 import "./register.scss";
+import { useState } from "react";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
