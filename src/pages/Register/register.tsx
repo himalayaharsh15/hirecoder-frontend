@@ -28,6 +28,7 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
+    mode: "onBlur",
   });
 
   const onSubmit = async (data: RegisterFormData) => {

@@ -24,6 +24,7 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
+    mode: "onBlur",
   });
 
   const onSubmit = async (data: LoginFormData) => {
