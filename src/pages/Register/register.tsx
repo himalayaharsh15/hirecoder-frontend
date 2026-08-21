@@ -19,6 +19,7 @@ import "./register.scss";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+  const [serverError, setServerError] = useState("");
 
   const [registerUser, { isLoading }] = useRegisterMutation();
 
@@ -33,13 +34,17 @@ const RegisterForm = () => {
 
   const onSubmit = async (data: RegisterFormData) => {
     try {
+      setServerError("");
+
       await registerUser(data).unwrap();
 
-      console.log("Registration Successful");
-
       navigate("/login");
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+
+      setServerError(
+        error?.data?.message || "Registration failed. Please try again.",
+      );
     }
   };
 
@@ -104,6 +109,10 @@ const RegisterForm = () => {
 
             <FormHelperText>{errors.role?.message}</FormHelperText>
           </FormControl>
+
+          {serverError && (
+            <div className="register__server-error">{serverError}</div>
+          )}
 
           <Button
             type="submit"
