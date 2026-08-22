@@ -20,7 +20,7 @@ import {
   SmartToyOutlined,
 } from "@mui/icons-material";
 
-import { useGetJobsQuery } from "../../features/jobs/jobsApi";
+import { useGetJobsQuery, type JobCategory } from "../../features/jobs/jobsApi";
 
 import { useGenerateInterviewPrepMutation } from "../../features/ai/aiApi";
 
@@ -28,12 +28,30 @@ import type { InterviewPrep } from "../../features/ai/types";
 
 import "./InterviewPrep.scss";
 
+const categoryOptions: {
+  label: string;
+  value: JobCategory;
+}[] = [
+  { label: "Technology", value: "TECHNOLOGY" },
+  { label: "Data", value: "DATA" },
+  { label: "Sales", value: "SALES" },
+  { label: "Marketing", value: "MARKETING" },
+  { label: "Finance", value: "FINANCE" },
+  { label: "Design", value: "DESIGN" },
+  { label: "Human Resources", value: "HUMAN_RESOURCES" },
+  { label: "Operations", value: "OPERATIONS" },
+  { label: "Other", value: "OTHER" },
+];
+
 const InterviewPrepPage = () => {
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
 
   const jobId = searchParams.get("jobId");
+  const [selectedCategory, setSelectedCategory] = useState<JobCategory | "">(
+    "",
+  );
 
   // ============================================================
   // JOBS
@@ -46,6 +64,7 @@ const InterviewPrepPage = () => {
   } = useGetJobsQuery({
     page: 1,
     limit: 50,
+    category: selectedCategory || undefined,
   });
 
   // ============================================================
@@ -224,11 +243,52 @@ const InterviewPrepPage = () => {
               </p>
 
               {/* ========================================== */}
+              {/* JOB CATEGORY */}
+              {/* ========================================== */}
+
+              <div className="interview-prep__job-selector">
+                <FormControl fullWidth disabled={isLoading}>
+                  <InputLabel id="interview-category-label">
+                    Select Category
+                  </InputLabel>
+
+                  <Select
+                    labelId="interview-category-label"
+                    value={selectedCategory}
+                    label="Select Category"
+                    onChange={(event) => {
+                      const category = event.target.value as JobCategory | "";
+
+                      setSelectedCategory(category);
+
+                      // Clear previously selected job because
+                      // it may not belong to the new category.
+                      setSelectedJobId(null);
+
+                      // Clear previously generated preparation.
+                      setPrep(null);
+                    }}
+                  >
+                    <MenuItem value="">Select Category</MenuItem>
+
+                    {categoryOptions.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+
+              {/* ========================================== */}
               {/* JOB SELECTOR */}
               {/* ========================================== */}
 
               <div className="interview-prep__job-selector">
-                <FormControl fullWidth disabled={isJobsLoading || isLoading}>
+                <FormControl
+                  fullWidth
+                  disabled={!selectedCategory || isJobsLoading || isLoading}
+                >
                   <InputLabel id="interview-job-label">Select Job</InputLabel>
 
                   <Select
@@ -239,13 +299,18 @@ const InterviewPrepPage = () => {
                       handleJobChange(event.target.value);
                     }}
                   >
-                    {jobsData?.jobs.map((job) => (
-                      <MenuItem key={job.id} value={job.id}>
-                        {job.title}
-
-                        {job.company?.name ? ` — ${job.company.name}` : ""}
+                    {selectedCategory && jobsData?.jobs.length === 0 ? (
+                      <MenuItem disabled>
+                        No jobs available for this category
                       </MenuItem>
-                    ))}
+                    ) : (
+                      jobsData?.jobs.map((job) => (
+                        <MenuItem key={job.id} value={job.id}>
+                          {job.title}
+                          {job.company?.name ? ` — ${job.company.name}` : ""}
+                        </MenuItem>
+                      ))
+                    )}
                   </Select>
                 </FormControl>
               </div>

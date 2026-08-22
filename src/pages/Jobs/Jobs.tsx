@@ -24,6 +24,7 @@ import {
   useUnsaveJobMutation,
   type EmploymentType,
   type ExperienceLevel,
+  type JobCategory,
   type JobFilters,
 } from "../../features/jobs/jobsApi";
 
@@ -41,6 +42,21 @@ const employmentOptions: {
   { label: "Contract", value: "CONTRACT" },
   { label: "Internship", value: "INTERN" },
   { label: "Freelance", value: "FREELANCE" },
+];
+
+const categoryOptions: {
+  label: string;
+  value: JobCategory;
+}[] = [
+  { label: "Technology", value: "TECHNOLOGY" },
+  { label: "Data", value: "DATA" },
+  { label: "Sales", value: "SALES" },
+  { label: "Marketing", value: "MARKETING" },
+  { label: "Finance", value: "FINANCE" },
+  { label: "Design", value: "DESIGN" },
+  { label: "Human Resources", value: "HUMAN_RESOURCES" },
+  { label: "Operations", value: "OPERATIONS" },
+  { label: "Other", value: "OTHER" },
 ];
 
 const experienceOptions: {
@@ -275,6 +291,34 @@ const Jobs = () => {
               Clear
             </Button>
           </div>
+
+          {/* Category */}
+
+          <FormControl fullWidth>
+            <InputLabel>Category</InputLabel>
+
+            <Select
+              value={filters.category || ""}
+              label="Category"
+              onChange={(event) => {
+                setFilters((previous) => ({
+                  ...previous,
+                  category: (event.target.value || undefined) as
+                    | JobCategory
+                    | undefined,
+                  page: 1,
+                }));
+              }}
+            >
+              <MenuItem value="">All categories</MenuItem>
+
+              {categoryOptions.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
           {/* Employment Type */}
 

@@ -9,7 +9,7 @@ export type EmploymentType =
 
 export type ExperienceLevel = "FRESHER" | "JUNIOR" | "MID" | "SENIOR" | "LEAD";
 
-export type JobSource = "HIRECODER" | "GREENHOUSE";
+export type JobSource = "HIRECODER" | "GREENHOUSE" | "ADZUNA" | "ASHBY";
 
 export interface JobCompany {
   id?: string;
@@ -26,6 +26,7 @@ export interface Job {
   description: string;
   companyName?: string;
   location?: string;
+  category: JobCategory;
 
   employmentType: EmploymentType;
   experienceLevel: ExperienceLevel;
@@ -66,12 +67,24 @@ export interface JobsResponse {
 export interface JobFilters {
   search?: string;
   location?: string;
+  category?: JobCategory;
   employmentType?: EmploymentType;
   experienceLevel?: ExperienceLevel;
   sort?: "latest" | "oldest";
   page?: number;
   limit?: number;
 }
+
+export type JobCategory =
+  | "TECHNOLOGY"
+  | "DATA"
+  | "SALES"
+  | "MARKETING"
+  | "FINANCE"
+  | "DESIGN"
+  | "HUMAN_RESOURCES"
+  | "OPERATIONS"
+  | "OTHER";
 
 export const jobsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
