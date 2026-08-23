@@ -12,13 +12,14 @@ import {
   TrendingUp,
 } from "@mui/icons-material";
 
-import { Button, CircularProgress } from "@mui/material";
+import { Button } from "@mui/material";
 
 import { useAppSelector } from "../../../App/hook";
 
 import { useGetCandidateDashboardQuery } from "../../../features/candidate/candidateApi";
 
 import "./CandidateDashboard.scss";
+import CandidateDashboardSkeleton from "./CandidateDashboardSkeleton";
 
 const CandidateDashboard = () => {
   const user = useAppSelector((state) => state.auth.user);
@@ -38,15 +39,7 @@ const CandidateDashboard = () => {
   // ============================================================
 
   if (isLoading) {
-    return (
-      <section className="candidate-dashboard">
-        <div className="candidate-dashboard__loading">
-          <CircularProgress />
-
-          <p>Loading your dashboard...</p>
-        </div>
-      </section>
-    );
+    return <CandidateDashboardSkeleton />;
   }
 
   // ============================================================

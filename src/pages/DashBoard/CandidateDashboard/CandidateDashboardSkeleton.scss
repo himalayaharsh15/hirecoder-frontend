@@ -1,0 +1,252 @@
+.candidate-dashboard {
+    width: 100%;
+
+    &__container {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+
+    // ============================================================
+    // Welcome section
+    // ============================================================
+
+    &__welcome {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        min-height: 280px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border-radius: 1rem;
+        background: #f8fafc;
+        box-sizing: border-box;
+    }
+
+    &__welcome-content {
+        flex: 1;
+        min-width: 0;
+
+        >span {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    &__welcome-visual {
+        width: 140px;
+        min-width: 140px;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__skeleton-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    // ============================================================
+    // Statistics
+    // ============================================================
+
+    &__stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    &__stat-skeleton {
+        min-height: 110px;
+        padding: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 0.75rem;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        box-sizing: border-box;
+    }
+
+    // ============================================================
+    // Main dashboard cards
+    // ============================================================
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    &__card {
+        min-height: 320px;
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        box-sizing: border-box;
+    }
+
+    // ============================================================
+    // Application skeleton
+    // ============================================================
+
+    &__application-skeleton {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        min-height: 70px;
+        margin-top: 1rem;
+    }
+
+    // ============================================================
+    // Recommended jobs
+    // ============================================================
+
+    &__jobs {
+        min-height: 250px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 0.75rem;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        box-sizing: border-box;
+    }
+
+    &__job-skeleton {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        min-height: 65px;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #e5e7eb;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    // ============================================================
+    // Quick actions
+    // ============================================================
+
+    &__quick-actions {
+        min-height: 180px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 0.75rem;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        box-sizing: border-box;
+    }
+
+    &__quick-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+}
+
+// ============================================================
+// Tablet
+// ============================================================
+
+@media (max-width: 760px) {
+    .candidate-dashboard {
+        &__container {
+            padding: 1.5rem;
+        }
+
+        &__welcome {
+            min-height: 260px;
+            padding: 1.5rem;
+        }
+
+        &__stats {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        &__grid {
+            grid-template-columns: 1fr;
+        }
+
+        &__quick-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+}
+
+// ============================================================
+// Mobile
+// ============================================================
+
+@media (max-width: 560px) {
+    .candidate-dashboard {
+        &__container {
+            padding: 1rem;
+        }
+
+        &__welcome {
+            min-height: 300px;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 1.25rem;
+            gap: 1rem;
+        }
+
+        &__welcome-visual {
+            display: none;
+        }
+
+        &__skeleton-actions {
+            width: 100%;
+            gap: 0.75rem;
+
+            >span {
+                flex: 1;
+            }
+        }
+
+        &__stats {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        &__stat-skeleton {
+            min-height: 90px;
+        }
+
+        &__card {
+            min-height: 300px;
+            padding: 1.25rem;
+        }
+
+        &__jobs {
+            min-height: 240px;
+            padding: 1.25rem;
+        }
+
+        &__job-skeleton {
+            min-height: 75px;
+        }
+
+        &__quick-actions {
+            min-height: 200px;
+            padding: 1.25rem;
+        }
+
+        &__quick-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+}
