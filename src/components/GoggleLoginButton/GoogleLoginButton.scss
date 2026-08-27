@@ -1,23 +1,17 @@
 .google-login-button {
     width: 100%;
-    min-width: 0;
-
     display: flex;
     justify-content: center;
     align-items: center;
 
     overflow: hidden;
 
-    transition: opacity 0.2s ease;
-
     &--disabled {
         opacity: 0.6;
         pointer-events: none;
     }
 
-    // Google renders its own internal container
-    >div {
-        width: 100% !important;
-        max-width: 100% !important;
+    @media (max-width: 440px) {
+        justify-content: center;
     }
 }

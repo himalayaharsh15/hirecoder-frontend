@@ -10,6 +10,19 @@ const GoogleLoginButton = ({
   onSuccess,
   disabled = false,
 }: GoogleLoginButtonProps) => {
+  const handleSuccess = (response: { credential?: string }) => {
+    if (!response.credential) {
+      console.error("Google did not return a credential");
+      return;
+    }
+
+    onSuccess(response.credential);
+  };
+
+  const handleError = () => {
+    console.error("Google login failed");
+  };
+
   return (
     <div
       className={`google-login-button ${
@@ -17,21 +30,13 @@ const GoogleLoginButton = ({
       }`}
     >
       <GoogleLogin
-        onSuccess={(response) => {
-          if (response.credential) {
-            onSuccess(response.credential);
-          }
-        }}
-        onError={() => {
-          console.error("Google login failed");
-        }}
+        onSuccess={handleSuccess}
+        onError={handleError}
         useOneTap={false}
-        type="standard"
         theme="outline"
         size="large"
         text="signin_with"
         shape="rectangular"
-        logo_alignment="left"
         width="100%"
       />
     </div>
