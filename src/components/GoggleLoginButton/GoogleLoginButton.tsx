@@ -1,93 +1,46 @@
-import GoogleIcon from "@mui/icons-material/Google";
-import { Button } from "@mui/material";
-import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 
 interface GoogleLoginButtonProps {
   onSuccess: (credential: string) => void;
   disabled?: boolean;
 }
 
-/**
- * ============================================================
- * Google Login Button
- * ============================================================
- *
- * Custom MUI Google login button.
- *
- * Instead of using Google's pre-styled <GoogleLogin />
- * component, we use the useGoogleLogin hook so that
- * the button can be completely controlled by MUI.
- *
- * Flow:
- *
- * MUI Button
- *     ↓
- * Google authentication
- *     ↓
- * Google access token
- *     ↓
- * Backend verification
- */
 const GoogleLoginButton = ({
   onSuccess,
   disabled = false,
 }: GoogleLoginButtonProps) => {
-  const loginWithGoogle = useGoogleLogin({
-    /**
-     * Google authentication succeeded.
-     *
-     * The access_token returned here is passed to the parent.
-     */
-    onSuccess: (tokenResponse) => {
-      onSuccess(tokenResponse.access_token);
-    },
+  const handleSuccess = (response: { credential?: string }) => {
+    if (!response.credential) {
+      console.error("Google did not return a credential");
+      return;
+    }
 
-    /**
-     * Google authentication failed.
-     */
-    onError: () => {
-      console.error("Google login failed");
-    },
-  });
+    onSuccess(response.credential);
+  };
+
+  const handleError = () => {
+    console.error("Google login failed");
+  };
 
   return (
-    <Button
-      type="button"
-      fullWidth
-      variant="outlined"
-      size="large"
-      startIcon={<GoogleIcon />}
-      onClick={() => loginWithGoogle()}
-      disabled={disabled}
-      sx={{
-        height: 48,
-        textTransform: "none",
-        fontSize: "15px",
-        fontWeight: 500,
-        borderRadius: "6px",
-
-        color: "#3c4043",
-        backgroundColor: "#fff",
-        borderColor: "#dadce0",
-
-        "&:hover": {
-          backgroundColor: "#69bbe5",
-          borderColor: "#c7c9cc",
-          boxShadow:
-            "0 1px 2px rgba(60, 64, 67, 0.2), 0 1px 3px rgba(60, 64, 67, 0.1)",
-        },
-
-        "&:active": {
-          backgroundColor: "#69bbe5",
-        },
-
-        "& .MuiButton-startIcon": {
-          marginRight: "10px",
-        },
+    <div
+      style={{
+        width: "100%",
+        opacity: disabled ? 0.6 : 1,
+        pointerEvents: disabled ? "none" : "auto",
       }}
     >
-      Continue with Google
-    </Button>
+      <GoogleLogin
+        onSuccess={handleSuccess}
+        onError={handleError}
+        useOneTap={false}
+        theme="outline"
+        size="large"
+        text="continue_with"
+        shape="rectangular"
+        width="100%"
+      />
+    </div>
   );
 };
 
