@@ -107,10 +107,13 @@ const RegisterForm = () => {
         </p>
 
         <form className="register__form" onSubmit={handleSubmit(onSubmit)}>
-          <GoogleLoginButton
-            onSuccess={handleGoogleSuccess}
-            disabled={isGoogleLoading}
-          />
+          <div>
+            <GoogleLoginButton
+              onSuccess={handleGoogleSuccess}
+              disabled={isGoogleLoading}
+            />
+          </div>
+
           <Divider
             sx={{
               my: 2.5,
