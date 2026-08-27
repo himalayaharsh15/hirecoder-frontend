@@ -6,27 +6,19 @@
 
     min-height: 44px;
 
-    transition: opacity 0.2s ease;
-
     &--disabled {
         opacity: 0.6;
         pointer-events: none;
     }
 
-    // Google button itself
+    // Google renders its own button inside an iframe/container.
+    // Make that rendered element use the available width.
     >div {
-        width: 100%;
-        display: flex;
-        justify-content: center;
+        width: 100% !important;
     }
 
-    @media (max-width: 480px) {
-        transform: scale(0.95);
-        width: 80%;
-    }
-
-    @media (max-width: 360px) {
-        transform: scale(0.9);
-        width: 80%;
+    iframe {
+        width: 100% !important;
+        max-width: 100%;
     }
 }

@@ -37,7 +37,7 @@ const GoogleLoginButton = ({
         size="large"
         text="signin_with"
         shape="rectangular"
-        width="400"
+        width="100%"
       />
     </div>
   );
