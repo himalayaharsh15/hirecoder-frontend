@@ -2,10 +2,29 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 4px;
+    align-items: center;
+
+    min-height: 44px;
+
+    transition: opacity 0.2s ease;
 
     &--disabled {
         opacity: 0.6;
         pointer-events: none;
+    }
+
+    // Google button itself
+    >div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    @media (max-width: 480px) {
+        transform: scale(0.95);
+    }
+
+    @media (max-width: 360px) {
+        transform: scale(0.9);
     }
 }
