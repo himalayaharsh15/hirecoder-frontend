@@ -1,4 +1,5 @@
 import { GoogleLogin } from "@react-oauth/google";
+import "./GoogleLoginButton.scss";
 
 interface GoogleLoginButtonProps {
   onSuccess: (credential: string) => void;
@@ -24,11 +25,9 @@ const GoogleLoginButton = ({
 
   return (
     <div
-      style={{
-        width: "100%",
-        opacity: disabled ? 0.6 : 1,
-        pointerEvents: disabled ? "none" : "auto",
-      }}
+      className={`google-login-button ${
+        disabled ? "google-login-button--disabled" : ""
+      }`}
     >
       <GoogleLogin
         onSuccess={handleSuccess}
@@ -36,9 +35,9 @@ const GoogleLoginButton = ({
         useOneTap={false}
         theme="outline"
         size="large"
-        text="continue_with"
+        text="signin_with"
         shape="rectangular"
-        width="100%"
+        width="400"
       />
     </div>
   );
