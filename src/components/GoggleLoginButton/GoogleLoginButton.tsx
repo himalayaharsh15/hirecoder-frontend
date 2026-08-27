@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import "./GoogleLoginButton.scss";
 
@@ -10,18 +11,23 @@ const GoogleLoginButton = ({
   onSuccess,
   disabled = false,
 }: GoogleLoginButtonProps) => {
-  const handleSuccess = (response: { credential?: string }) => {
-    if (!response.credential) {
-      console.error("Google did not return a credential");
-      return;
-    }
+  const [width, setWidth] = useState(400);
 
-    onSuccess(response.credential);
-  };
+  useEffect(() => {
+    const updateWidth = () => {
+      const availableWidth = Math.min(window.innerWidth - 40, 400);
 
-  const handleError = () => {
-    console.error("Google login failed");
-  };
+      setWidth(availableWidth);
+    };
+
+    updateWidth();
+
+    window.addEventListener("resize", updateWidth);
+
+    return () => {
+      window.removeEventListener("resize", updateWidth);
+    };
+  }, []);
 
   return (
     <div
@@ -30,14 +36,20 @@ const GoogleLoginButton = ({
       }`}
     >
       <GoogleLogin
-        onSuccess={handleSuccess}
-        onError={handleError}
+        onSuccess={(response) => {
+          if (response.credential) {
+            onSuccess(response.credential);
+          }
+        }}
+        onError={() => {
+          console.error("Google login failed");
+        }}
         useOneTap={false}
         theme="outline"
         size="large"
         text="signin_with"
         shape="rectangular"
-        width="100%"
+        width={width}
       />
     </div>
   );
