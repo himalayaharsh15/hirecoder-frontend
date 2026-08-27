@@ -1,22 +1,29 @@
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Divider } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useAppDispatch } from "../../App/hook";
 
-import { useLoginMutation } from "../../features/auth/authApi";
+import {
+  useGoogleLoginMutation,
+  useLoginMutation,
+} from "../../features/auth/authApi";
 import { setCredentials } from "../../features/auth/authSlice";
 
 import { loginSchema, type LoginFormData } from "./validation/loginSchema";
 
 import "./loginForm.scss";
 import { useNavigate } from "react-router-dom";
+import GoogleLoginButton from "../GoggleLoginButton/GoogleLoginButton";
 
 const LoginForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [login, { isLoading }] = useLoginMutation();
+
+  const [googleLogin, { isLoading: isGoogleLoading }] =
+    useGoogleLoginMutation();
 
   const {
     register,
@@ -47,6 +54,43 @@ const LoginForm = () => {
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  /**
+   * ============================================================
+   * Google Login
+   * ============================================================
+   *
+   * Google returns a verified ID-token credential to the frontend.
+   *
+   * We send that credential to our backend.
+   * The backend verifies it with Google and returns the normal
+   * HireCoder access + refresh tokens.
+   */
+  const handleGoogleSuccess = async (credential: string) => {
+    try {
+      const response = await googleLogin({
+        credential,
+      }).unwrap();
+
+      // Store refresh token so authentication can survive
+      // a browser refresh.
+      localStorage.setItem("refreshToken", response.refreshToken);
+
+      // Store the same authentication state used by
+      // normal email/password login.
+      dispatch(
+        setCredentials({
+          user: response.user,
+          accessToken: response.accessToken,
+        }),
+      );
+
+      // Send the authenticated user to the dashboard.
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Google login failed:", error);
     }
   };
 
@@ -85,6 +129,24 @@ const LoginForm = () => {
           >
             {isLoading ? "Signing In..." : "Login"}
           </Button>
+
+          <Divider
+            sx={{
+              my: 2.5,
+              color: "text.secondary",
+              fontSize: "0.75rem",
+              "&::before, &::after": {
+                borderColor: "divider",
+              },
+            }}
+          >
+            Or
+          </Divider>
+
+          <GoogleLoginButton
+            onSuccess={handleGoogleSuccess}
+            disabled={isLoading || isGoogleLoading}
+          />
         </form>
       </div>
     </section>

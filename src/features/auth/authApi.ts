@@ -56,6 +56,24 @@ export const authApi = baseApi.injectEndpoints({
         responseHandler: "text",
       }),
     }),
+
+    /**
+     * ------------------------------------------------------------
+     * Google Login
+     * ------------------------------------------------------------
+     *
+     * Sends the Google ID token to the backend.
+     *
+     * The backend verifies the token with Google and then
+     * returns the normal HireCoder access + refresh tokens.
+     */
+    googleLogin: builder.mutation<LoginResponse, { credential: string }>({
+      query: (body) => ({
+        url: "/auth/google",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 
   overrideExisting: false,
@@ -66,4 +84,5 @@ export const {
   useRegisterMutation,
   useRefreshTokenMutation,
   useLogoutMutation,
+  useGoogleLoginMutation,
 } = authApi;

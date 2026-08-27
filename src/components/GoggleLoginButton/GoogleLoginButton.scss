@@ -1,0 +1,11 @@
+.google-login-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+
+    &--disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+}
