@@ -22,9 +22,11 @@
 
     @media (max-width: 480px) {
         transform: scale(0.95);
+        width: 80%;
     }
 
     @media (max-width: 360px) {
         transform: scale(0.9);
+        width: 80%;
     }
 }
